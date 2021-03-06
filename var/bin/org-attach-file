@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Author: Mikhail Skorzhinskii <mskorzhinskiy@eml.cc>
+#
+# Description: Attach file to the org-mode file storage
+
+files=
+
+for file in "$@"; do
+    files="${files} \"${file}\""
+done;
+
+emacsclient -a "" -c -F '((name . "doom-capture"))' \
+    -e "(org-attach-files-capture (list ${files}))"

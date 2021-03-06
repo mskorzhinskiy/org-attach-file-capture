@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=all/all;
+Actions=org-attach-mv;
+X-KDE-Priority=TopLevel
+
+[Desktop Action org-attach-mv]
+Name=Attach to org-mode
+Exec=org-attach-file %U
+Icon=cloud-download

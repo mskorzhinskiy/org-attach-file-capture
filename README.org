@@ -1,0 +1,63 @@
+#+TITLE: Capture and attach files to org-mode
+
+Helper function and desktop file aimed to automate process of capturing and
+  attaching files from file system directly to the org-mode.
+
+* Install
+
+Install desktop file to system:
+#+begin_src sh
+# Using GNU Stow (https://www.gnu.org/software/stow/)
+stow -t ~ var
+
+# .. or linking it by hands
+mkdir -p ~/bin
+mkdir -p ~/.local/share/kservices5/ServiceMenus/
+ln -s $(realpath var/bin/org-attach-file) ~/bin/org-attach-file
+ln -s $(realpath var/.local/share/kservices5/ServiceMenus/emacs-file-capture.desktop) \
+      ~/.local/share/kservices5/ServiceMenus/emacs-file-capture.desktop
+
+# Update desktop data base
+update-desktop-database ~/.local/share/applications/
+#+end_src
+
+This installation process assumes you are working with KDEv5 environment and
+  that folder =~/bin= is in your ~$PATH~ variable. While the desktop file will
+  possibly work with other file managers and DEs, the destination folder is
+  certainly different.
+
+Install package in emacs:
+#+begin_src elisp
+(use-package org-attach-file)
+#+end_src
+
+Package
+#+begin_src elisp
+(package! org-attach-file-capture
+  :recipe (:repo "mskorzhinskiy/org-attach-file-capture"
+           :host github :branch "main"))
+#+end_src
+
+* Usage
+
+After installing, you should be able to see "Attach to org-mode" menu when
+  you'll right-clock file in KDE file managers, like Dolphin. Pressing this
+  button will pop up a frame with capture templates.
+
+- Supports sending multiply files at once (each file gets its own heading and ID);
+- Separate variable for file capture templates;
+- Capture is always immediately ends after pressing "Attach to org-mode".
+
+* Demo
+
+Right click in Dolphin:
+
+[[file:demo_step_1.png]]
+
+Normal capture interface:
+
+[[file:demo_step_2.png]]
+
+Newly created headline:
+
+[[file:demo_step_3.png]]

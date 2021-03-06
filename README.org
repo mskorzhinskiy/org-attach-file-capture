@@ -5,6 +5,12 @@ Helper function and desktop file aimed to automate process of capturing and
 
 * Install
 
+#+begin_src elisp
+(use-package org-attach-file)
+#+end_src
+
+* KDE
+
 Install desktop file to system:
 #+begin_src sh
 # Using GNU Stow (https://www.gnu.org/software/stow/)
@@ -26,12 +32,9 @@ This installation process assumes you are working with KDEv5 environment and
   possibly work with other file managers and DEs, the destination folder is
   certainly different.
 
-Install package in emacs:
-#+begin_src elisp
-(use-package org-attach-file)
-#+end_src
+* Doom emacs
 
-Package
+Package recipe:
 #+begin_src elisp
 (package! org-attach-file-capture
   :recipe (:repo "mskorzhinskiy/org-attach-file-capture"
